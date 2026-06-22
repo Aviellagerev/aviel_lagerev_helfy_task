@@ -1,4 +1,4 @@
-function TaskItem({ task, onDelete, onToggle }) {
+function TaskItem({ task, onDelete, onToggle, onEdit }) {
   function handleDelete() {
     if (window.confirm('Delete this task?')) {
       onDelete(task.id);
@@ -16,6 +16,7 @@ function TaskItem({ task, onDelete, onToggle }) {
         <button onClick={() => onToggle(task.id)}>
           {task.completed ? 'Undo' : 'Complete'}
         </button>
+        <button onClick={() => onEdit(task)}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
       </div>
     </div>

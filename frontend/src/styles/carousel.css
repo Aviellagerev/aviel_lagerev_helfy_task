@@ -17,5 +17,70 @@
 
 .task-card {
   border: 1px solid #ccc;
+  border-left: 6px solid #ccc;
+  border-radius: 8px;
   padding: 16px;
+  text-align: left;
+}
+
+.priority-high { border-left-color: #e74c3c; }
+.priority-medium { border-left-color: #f39c12; }
+.priority-low { border-left-color: #2ecc71; }
+
+
+.task-actions button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.task-actions button:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.task-actions button:active {
+  transform: translateY(0);
+}
+
+
+.task-actions button:nth-child(1) { background: #2ecc71; } 
+.task-actions button:nth-child(2) { background: #4a90d9; } 
+.task-actions button:nth-child(3) { background: #e74c3c; } 
+
+
+form input,
+form select {
+  padding: 10px;
+  margin: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+form input:focus,
+form select:focus {
+  outline: none;
+  border-color: #4a90d9;
+}
+
+form button {
+  padding: 10px 18px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+  background: #4a90d9;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+form button:hover {
+  background: #357ab8;
 }

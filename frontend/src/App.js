@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import './App.css';
-import { getTasks, createTask, deleteTask, toggleTask } from './services/taskService';
+import { getTasks, createTask, deleteTask, toggleTask, updateTask } from './services/taskService';
 import TaskForm from './components/TaskForm';
+import TaskFilter from './components/TaskFilter';
 import TaskList from './components/TaskList';
+import './App.css';
 import './styles/carousel.css';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [editingTask, setEditingTask] = useState(null);
+  const [filter, setFilter] = useState('all');
   useEffect(() => {
     async function loadTasks() {
       try {
@@ -48,17 +50,38 @@ function App() {
       setError('Could not toggle task');
     }
   }
+  async function handleUpdateTask(updatedTask) {
+    try {
+      const result = await updateTask(editingTask.id, updatedTask);
+      setTasks(tasks.map((task) => (task.id === editingTask.id ? result : task)));
+      setEditingTask(null);
+    } catch (err) {
+      setError('Could not update task');
+    }
+  }
+  const filteredTasks = tasks.filter((task) => {
+  if (filter === 'completed') return task.completed;
+  if (filter === 'pending') return !task.completed;
+  return true;
+});
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="App">
       <h1>Task Manager</h1>
-      <TaskForm onAddTask={handleAddTask} />
+      <TaskForm
+        onAddTask={handleAddTask}
+        onUpdateTask={handleUpdateTask}
+        editingTask={editingTask}
+        onCancelEdit={() => setEditingTask(null)}
+      />
+      <TaskFilter filter={filter} onFilterChange={setFilter} />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         onDelete={handleDeleteTask}
         onToggle={handleToggleTask}
+        onEdit={setEditingTask}
       />
     </div>
   );
