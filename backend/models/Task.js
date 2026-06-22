@@ -7,6 +7,11 @@ class Task {
     this.createdAt = new Date();
     this.priority = priority;
   }
+  update(title,description,priority){
+    this.title = title 
+    this.description = description;
+    this.priority = priority;
+  }
 }
 
 module.exports = Task;
