@@ -3,14 +3,19 @@ import TaskItem from './TaskItem';
 
 function TaskList({ tasks, onDelete, onToggle, onEdit }) {
   const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);      
 
   useEffect(() => {
-    if (tasks.length === 0) return;
+    setIndex(0);
+  }, [tasks.length]);
+  
+  useEffect(() => {
+    if (tasks.length === 0 || isPaused) return;
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % tasks.length);
     }, 2500);
     return () => clearInterval(timer);
-  }, [tasks.length]);
+  }, [tasks.length, isPaused, index]);
 
   function goNext() {
     setIndex((prev) => (prev + 1) % tasks.length);
@@ -25,10 +30,12 @@ function TaskList({ tasks, onDelete, onToggle, onEdit }) {
   }
 
   return (
-    <div className="carousel-wrapper">
-      <button className="carousel-arrow left" onClick={goPrev}>
-        ‹
-      </button>
+    <div
+      className="carousel-wrapper"
+      onMouseEnter={() => setIsPaused(true)}     
+      onMouseLeave={() => setIsPaused(false)}    
+    >
+      <button className="carousel-arrow" onClick={goPrev}>‹</button>
 
       <div className="carousel">
         <div
@@ -48,9 +55,7 @@ function TaskList({ tasks, onDelete, onToggle, onEdit }) {
         </div>
       </div>
 
-      <button className="carousel-arrow right" onClick={goNext}>
-        ›
-      </button>
+      <button className="carousel-arrow" onClick={goNext}>›</button>
     </div>
   );
 }
