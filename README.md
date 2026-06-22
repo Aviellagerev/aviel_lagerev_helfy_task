@@ -1,4 +1,4 @@
-# aviel_lagerev_helfy_task
+<img width="1427" height="951" alt="image" src="https://github.com/user-attachments/assets/44530227-3a90-44e4-8a95-9565239db4aa" /># aviel_lagerev_helfy_task
 small task manager application build using node.js react and express.js
 
 Tech Stack
@@ -97,3 +97,4 @@ i didnt add sucess/confirm on addition and edits
 
 adding for futre that was in the design in my head didnt have time for that
 list/carousel view toggle 
+<img width="1427" height="951" alt="image" src="https://github.com/user-attachments/assets/7ba86409-743d-44e5-9053-6ff3911b8c7d" />
