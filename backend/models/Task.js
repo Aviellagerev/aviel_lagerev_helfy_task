@@ -12,6 +12,9 @@ class Task {
     this.description = description;
     this.priority = priority;
   }
+  toggle(){
+    this.completed = !this.completed;
+  }
 }
 
 module.exports = Task;

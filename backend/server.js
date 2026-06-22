@@ -83,7 +83,17 @@ tasks.splice(index, 1);
 
 });
 
+app.patch('/api/tasks/:id/toggle', (req, res) => {
+const id = Number(req.params.id);
+const task = tasks.find(t => t.id === id);
 
+if (!task) {
+    return res.status(404).json({ error: 'Task not found' });
+}
+
+task.toggle();
+res.status(200).json(task);
+});
 
 app.listen(4000, () => {
   console.log('Server running on port 4000');
