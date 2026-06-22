@@ -36,8 +36,12 @@ body {
   padding: 16px;
   text-align: left;
   color: #ebdbb2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
 .task-card h3 { margin: 0 0 8px 0; }
 .task-card p { margin: 0 0 12px 0; color: #a89984; }
 
