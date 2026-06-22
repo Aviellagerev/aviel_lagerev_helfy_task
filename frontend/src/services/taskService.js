@@ -19,6 +19,7 @@ export async function createTask(task){
     }
     return response.json();
 }
+
 export async function updateTask(id, task) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'PUT',
@@ -30,6 +31,7 @@ export async function updateTask(id, task) {
     }
     return response.json();
 }
+
 export async function deleteTask(id) {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'DELETE',
@@ -39,6 +41,7 @@ export async function deleteTask(id) {
     }
     return response.json();
 }
+
 export async function toggleTask(id) {
   const response = await fetch(`${API_URL}/${id}/toggle`, {
     method: 'PATCH',
